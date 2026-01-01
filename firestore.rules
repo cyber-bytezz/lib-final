@@ -1,0 +1,14 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // IMPORTANT: For the "Mock Admin" logic to work, 
+    // rules must allow unauthenticated access.
+    // Ensure these are deployed in your Firebase Console.
+    
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}
