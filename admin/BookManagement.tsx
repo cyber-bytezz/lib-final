@@ -40,11 +40,11 @@ const BookManagement: React.FC = () => {
         <div className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm sticky top-24">
           <h3 className="text-lg font-bold text-slate-900 mb-4">{form["New NO."] ? 'Edit Book' : 'Add New Book'}</h3>
           <form onSubmit={handleSubmit}>
-            <FormInput label="Book Name" value={form["NAME OF THE BOOK"]} onChange={(e) => setForm({...form, "NAME OF THE BOOK": e.target.value})} required />
-            <FormInput label="New NO. (ID)" value={form["New NO."]} onChange={(e) => setForm({...form, "New NO.": e.target.value})} required />
-            <FormInput label="Author" value={form["AUTHOR NAME"]} onChange={(e) => setForm({...form, "AUTHOR NAME": e.target.value})} required />
-            <FormInput label="Publication" value={form["PUBLICATION"]} onChange={(e) => setForm({...form, "PUBLICATION": e.target.value})} required />
-            <FormInput label="S.No" type="number" value={form["S.NO"]} onChange={(e) => setForm({...form, "S.NO": parseInt(e.target.value)})} required />
+            <FormInput label="Book Name" value={form["NAME OF THE BOOK"]} onChange={(e) => setForm({ ...form, "NAME OF THE BOOK": e.target.value })} required />
+            <FormInput label="New NO. (ID)" value={form["New NO."]} onChange={(e) => setForm({ ...form, "New NO.": e.target.value })} required />
+            <FormInput label="Author" value={form["AUTHOR NAME"]} onChange={(e) => setForm({ ...form, "AUTHOR NAME": e.target.value })} required />
+            <FormInput label="Publication" value={form["PUBLICATION"]} onChange={(e) => setForm({ ...form, "PUBLICATION": e.target.value })} required />
+            <FormInput label="S.No" type="number" value={form["S.NO"]} onChange={(e) => setForm({ ...form, "S.NO": parseInt(e.target.value) })} required />
             <div className="flex gap-2">
               <button type="submit" className="flex-1 bg-indigo-600 text-white font-bold py-2 rounded-lg hover:bg-indigo-700 transition-colors">Save</button>
               {form["New NO."] && <button type="button" onClick={() => setForm({ "S.NO": 0, "New NO.": "", "NAME OF THE BOOK": "", "AUTHOR NAME": "", "PUBLICATION": "" })} className="bg-slate-200 text-slate-700 font-bold py-2 px-4 rounded-lg hover:bg-slate-300">Cancel</button>}

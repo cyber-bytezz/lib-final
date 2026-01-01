@@ -17,7 +17,17 @@ const AdminSearch: React.FC = () => {
     }));
   }, [store.books, store.transactions]);
 
-  const filtered = booksWithAvailability.filter(b => 
+  const loanCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    store.transactions
+      .filter(t => t.status === "borrowed")
+      .forEach(t => {
+        counts[t.bookId] = (counts[t.bookId] || 0) + 1;
+      });
+    return counts;
+  }, [store.transactions]);
+
+  const filtered = booksWithAvailability.filter(b =>
     b["NAME OF THE BOOK"]?.toLowerCase().includes(query.toLowerCase()) ||
     b["AUTHOR NAME"]?.toLowerCase().includes(query.toLowerCase()) ||
     b["New NO."]?.toLowerCase().includes(query.toLowerCase())
@@ -38,7 +48,7 @@ const AdminSearch: React.FC = () => {
           No matches found for "{query}"
         </div>
       ) : (
-        <BookTable books={filtered} showAvailability={true} />
+        <BookTable books={filtered} showAvailability={true} loanCounts={loanCounts} />
       )}
     </div>
   );

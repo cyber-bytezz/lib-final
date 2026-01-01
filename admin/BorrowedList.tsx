@@ -40,6 +40,7 @@ const BorrowedList: React.FC = () => {
       await returnBookTransaction(tx.id, today);
       await notifyReturn(tx.borrowerEmail, tx.bookName);
       setSelectedTx({ ...tx, status: 'returned', actualReturnDate: today });
+      alert('Return processed and email notification sent.');
     } catch (e) { alert("Action failed."); } finally { setProcessing(false); }
   };
 
