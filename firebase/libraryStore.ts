@@ -15,7 +15,10 @@ class LibraryStore {
   public hasErrors: boolean = false;
 
   init(onReady?: () => void) {
-    if (this.listeners.length > 0) return;
+    if (this.listeners.length > 0) {
+      if (onReady) onReady();
+      return;
+    }
     this.onReadyCallback = onReady || null;
     this.hasErrors = false;
 
@@ -35,7 +38,7 @@ class LibraryStore {
     };
 
     collections.forEach(col => {
-      const unsub = onSnapshot(collection(db, col.name), 
+      const unsub = onSnapshot(collection(db, col.name),
         (snap) => {
           const data = snap.docs.map(d => ({ ...d.data(), id: d.id }));
           col.setter(data);

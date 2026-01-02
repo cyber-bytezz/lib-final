@@ -10,7 +10,7 @@ const AdminNavbar: React.FC = () => {
 
   const handleLogout = async () => {
     await logoutAdmin();
-    navigate('/login');
+    navigate('/');
   };
 
   const navLinks = [
@@ -24,7 +24,7 @@ const AdminNavbar: React.FC = () => {
   return (
     <nav className="bg-white/90 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 md:px-6 h-16 flex justify-between items-center relative">
-        <Link to="/" className="flex items-center gap-2.5 z-20">
+        <Link to="/admin" className="flex items-center gap-2.5 z-20">
           <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center shadow-md">
             <i className="fas fa-book-bookmark text-white text-xs"></i>
           </div>

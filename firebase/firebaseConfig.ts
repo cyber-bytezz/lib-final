@@ -14,15 +14,15 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app);
+// Initialize Firestore with persistent cache
+// This replaces the deprecated enableMultiTabIndexedDbPersistence
+import { initializeFirestore, persistentLocalCache, persistentMultipleTabManager } from "firebase/firestore";
+
+export const db = initializeFirestore(app, {
+  localCache: persistentLocalCache({
+    tabManager: persistentMultipleTabManager()
+  })
+});
+
 // Directly call getAuth imported from the core auth package
 export const auth = getAuth(app);
-
-// Enable Offline Persistence for "Fast and Smooth" performance
-enableMultiTabIndexedDbPersistence(db).catch((err) => {
-  if (err.code === 'failed-precondition') {
-    console.warn("Persistence failed: Multiple tabs open.");
-  } else if (err.code === 'unimplemented') {
-    console.warn("Persistence failed: Browser not supported.");
-  }
-});

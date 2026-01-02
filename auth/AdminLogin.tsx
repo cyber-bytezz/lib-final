@@ -15,11 +15,11 @@ const AdminLogin: React.FC = () => {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
       await loginAdmin(email, pass);
       // Short delay for better UX feel
-      setTimeout(() => navigate('/'), 500);
+      setTimeout(() => navigate('/admin'), 500);
     } catch (err: any) {
       console.error(err);
       setError("Invalid credentials. Please use the details provided below.");
@@ -38,7 +38,7 @@ const AdminLogin: React.FC = () => {
           <h2 className="text-3xl font-black text-slate-900 tracking-tight">SmartLib Admin</h2>
           <p className="text-slate-500 mt-2 font-medium">Internal Management Access</p>
         </div>
-        
+
         <div className="mb-8 p-5 bg-indigo-50 border border-indigo-100 rounded-2xl">
           <div className="flex items-center gap-2 mb-3">
             <i className="fas fa-info-circle text-indigo-600"></i>
@@ -56,7 +56,7 @@ const AdminLogin: React.FC = () => {
             {error}
           </div>
         )}
-        
+
         <form onSubmit={handleLogin} className="space-y-4">
           <FormInput label="Admin Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
           <FormInput label="Admin Password" type="password" value={pass} onChange={(e) => setPass(e.target.value)} required />

@@ -10,22 +10,27 @@ import IssueBook from './admin/IssueBook';
 import BorrowedList from './admin/BorrowedList';
 import MemberDirectory from './admin/MemberDirectory';
 import ProtectedRoute from './auth/ProtectedRoute';
+import BookSearch from './public/BookSearch';
+import PublicNavbar from './public/PublicNavbar';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const isPublicPage = location.pathname === '/';
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      {/* Navbar appears once globally */}
-      {!isLoginPage && <AdminNavbar />}
-      
+      {/* Navbar Logic */}
+      {!isLoginPage && (
+        isPublicPage ? <PublicNavbar /> : <AdminNavbar />
+      )}
+
       <div className="flex-1 w-full">
         {children}
       </div>
-      
+
       <footer className="py-6 text-center text-slate-400 text-[10px] uppercase tracking-[0.2em] font-bold">
-        SmartLib Admin Only Portal &copy; {new Date().getFullYear()}
+        SmartLib &copy; {new Date().getFullYear()}
       </footer>
     </div>
   );
@@ -36,11 +41,12 @@ const App: React.FC = () => {
     <HashRouter>
       <Layout>
         <Routes>
+          {/* Public Routes */}
+          <Route path="/" element={<BookSearch />} />
           <Route path="/login" element={<AdminLogin />} />
-          
-          {/* Main landing page */}
-          <Route path="/" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
-          
+
+          {/* Protected Admin Routes */}
+          <Route path="/admin" element={<ProtectedRoute><AdminHome /></ProtectedRoute>} />
           <Route path="/books" element={<ProtectedRoute><BookManagement /></ProtectedRoute>} />
           <Route path="/members" element={<ProtectedRoute><MemberDirectory /></ProtectedRoute>} />
           <Route path="/search" element={<ProtectedRoute><AdminSearch /></ProtectedRoute>} />

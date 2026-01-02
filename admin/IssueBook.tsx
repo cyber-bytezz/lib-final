@@ -121,19 +121,19 @@ const IssueBook: React.FC = () => {
                 </div>
               )}
             </div>
-
+{/* 
             {emailPreview && (
-              <button
-                onClick={() => {
-                  const win = window.open("", "_blank");
-                  if (win) win.document.write(emailPreview.html);
-                }}
-                className="w-full bg-blue-50 text-blue-600 font-black py-4 rounded-2xl hover:bg-blue-100 transition-all flex items-center justify-center gap-2 border border-blue-100"
-              >
-                <i className="fas fa-eye"></i>
-                <span>Preview Email Template</span>
-              </button>
-            )}
+              // <button
+              //   onClick={() => {
+              //     const win = window.open("", "_blank");
+              //     if (win) win.document.write(emailPreview.html);
+              //   }}
+              //   className="w-full bg-blue-50 text-blue-600 font-black py-4 rounded-2xl hover:bg-blue-100 transition-all flex items-center justify-center gap-2 border border-blue-100"
+              // >
+              //   <i className="fas fa-eye"></i>
+              //   <span>Preview Email Template</span>
+              // </button>
+            )} */}
 
             <button onClick={resetForm} className="w-full bg-slate-900 text-white font-black py-4 rounded-2xl hover:bg-black transition-all flex items-center justify-center gap-2">
               <i className="fas fa-plus-circle"></i>
