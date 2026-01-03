@@ -2,15 +2,28 @@ import React from 'react';
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 import { logoutAdmin } from '../firebase/authService';
 
+/**
+ * AdminDashboard: Central navigation and layout wrapper for the administrative interface.
+ * Features a persistent sticky navbar and a landing grid for the root path.
+ */
 const AdminDashboard: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // DEV: Handles secure sign-out and session termination
   const handleLogout = async () => {
-    await logoutAdmin();
-    navigate('/login');
+    try {
+      await logoutAdmin();
+      navigate('/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
+  /**
+   * DEV: Centralized navigation configuration. 
+   * Update this array to add/remove modules from the dashboard.
+   */
   const navCards = [
     { title: 'Search', path: '/search', icon: 'fa-magnifying-glass', color: 'bg-blue-600' },
     { title: 'Inventory', path: '/books', icon: 'fa-box-archive', color: 'bg-violet-600' },
@@ -19,12 +32,15 @@ const AdminDashboard: React.FC = () => {
     { title: 'History', path: '/borrowed', icon: 'fa-clock-rotate-left', color: 'bg-amber-600' },
   ];
 
+  // DEV: Determines if we are viewing the main landing page or a sub-route (child components render via Outlet elsewhere)
   const isMainDashboard = location.pathname === '/';
 
   return (
     <>
+      {/* Global Navigation Bar */}
       <nav className="bg-white/90 backdrop-blur-xl border-b border-slate-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
+          {/* Logo / Brand */}
           <Link to="/" className="flex items-center gap-2.5">
             <div className="w-8 h-8 bg-violet-600 rounded-lg flex items-center justify-center shadow-md">
               <i className="fas fa-book-bookmark text-white text-xs"></i>
@@ -32,6 +48,7 @@ const AdminDashboard: React.FC = () => {
             <span className="text-lg font-black text-slate-800 tracking-tight">SmartLib <span className="text-violet-600">Pro</span></span>
           </Link>
           
+          {/* Navigation Links & Actions */}
           <div className="flex items-center gap-1">
             {navCards.map(nav => (
               <Link 
@@ -43,13 +60,18 @@ const AdminDashboard: React.FC = () => {
               </Link>
             ))}
             <div className="h-4 w-px bg-slate-100 mx-3"></div>
-            <button onClick={handleLogout} className="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-rose-500 transition-all">
+            <button 
+              onClick={handleLogout} 
+              className="w-8 h-8 flex items-center justify-center text-slate-300 hover:text-rose-500 transition-all"
+              title="Sign Out"
+            >
               <i className="fas fa-power-off text-sm"></i>
             </button>
           </div>
         </div>
       </nav>
 
+      {/* Main Dashboard Hero & Module Grid - Only visible at root path */}
       {isMainDashboard && (
         <main className="max-w-7xl mx-auto py-10 px-6">
           <div className="mb-10">
