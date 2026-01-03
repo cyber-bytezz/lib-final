@@ -1,5 +1,0 @@
-{
-  "name": "SmartLib Management System",
-  "description": "A comprehensive Library Management System featuring book tracking, student/staff borrowing workflows, and real-time availability status powered by Firebase.",
-  "requestFramePermissions": []
-}
