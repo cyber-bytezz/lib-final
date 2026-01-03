@@ -15,3 +15,10 @@ export const getAllStaff = async (): Promise<Staff[]> => {
   const snapshot = await getDocs(collection(db, COLLECTION));
   return snapshot.docs.map(d => d.data() as Staff);
 };
+
+import { setDoc } from "firebase/firestore";
+
+export const addStaff = async (staff: Staff): Promise<void> => {
+  const ref = doc(db, COLLECTION, staff.StaffID);
+  await setDoc(ref, staff);
+};
