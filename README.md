@@ -1,12 +1,5 @@
 # SmartLib – Advanced Library Management System
 
-<div align="center">
-  <img src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" alt="SmartLib Banner" width="100%" />
-  <p><em>A modern, high-performance library management console built for speed, security, and scalability.</em></p>
-</div>
-
----
-
 ## 1. Project Overview
 
 ### Concept
@@ -350,5 +343,3 @@ SmartLib isn't just a management tool; it's a **Premium Visual Experience**.
 ## 18. Conclusion
 
 **SmartLib** represents a significant leap forward for library administration. By combining a robust technical stack with a user-centric design approach, the system provides a scalable foundation for any institution looking to modernize its resource management. Its reliability, speed, and real-time capabilities ensure that library staff can focus on what matters: serving their community.
-
----
